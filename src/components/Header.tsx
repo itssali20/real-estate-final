@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -72,15 +73,18 @@ export default function Header() {
         } ${solid && !open ? "border-b border-line bg-paper/85 backdrop-blur-xl" : "border-b border-transparent"}`}
       >
         <div className="mx-auto flex h-[var(--nav-h)] max-w-[1680px] items-center justify-between gap-6 px-5 sm:px-8 lg:px-12">
-          <Link
-            href="/"
-            data-cursor="hover"
-            className={`display-caps shrink-0 text-[clamp(0.82rem,1.25vw,1.02rem)] transition-colors duration-500 ${
-              dark ? "text-paper" : "text-ink"
-            }`}
-          >
-            {BRAND.mark}
-            <span className={dark ? "text-bronze-light" : "text-bronze"}>, Corp.</span>
+          <Link href="/" data-cursor="hover" className="flex shrink-0 items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-paper p-1 shadow-sm sm:h-10 sm:w-10">
+              <Image src="/images/logo.png" alt={BRAND.mark} width={40} height={40} className="h-full w-full object-contain" priority />
+            </span>
+            <span
+              className={`display-caps text-[clamp(0.82rem,1.25vw,1.02rem)] transition-colors duration-500 ${
+                dark ? "text-paper" : "text-ink"
+              }`}
+            >
+              {BRAND.mark}
+              <span className={dark ? "text-bronze-light" : "text-bronze"}>, Corp.</span>
+            </span>
           </Link>
 
           <nav className="hidden items-center gap-6 2xl:flex">

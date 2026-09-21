@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BRAND, FOOTER } from "@/lib/site";
 import SplitLines from "./ui/SplitLines";
@@ -52,7 +53,12 @@ export default function Footer() {
 
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div>
-            <p className="display-caps text-[clamp(1.05rem,2.2vw,1.6rem)]">{BRAND.mark}<span className="text-bronze">, Corp.</span></p>
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-paper p-1.5 shadow-sm">
+                <Image src="/images/logo.png" alt={BRAND.mark} width={44} height={44} className="h-full w-full object-contain" />
+              </span>
+              <p className="display-caps text-[clamp(1.05rem,2.2vw,1.6rem)]">{BRAND.mark}<span className="text-bronze">, Corp.</span></p>
+            </div>
             <p className="mt-2 text-sm text-paper/45">{BRAND.address}</p>
             <div className="mt-4 flex flex-wrap gap-x-7 gap-y-1.5 text-sm text-paper/60">
               <a href={`mailto:${BRAND.email.investors}`} className="link-underline">{BRAND.email.investors}</a>
