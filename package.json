@@ -1,0 +1,33 @@
+{
+  "name": "concord-pacific",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "gsap": "3.13.0",
+    "lenis": "1.3.11",
+    "next": "16.3.5",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.1.13",
+    "@types/node": "22.10.2",
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
+    "@types/three": "0.180.0",
+    "postcss": "8.5.28",
+    "tailwindcss": "4.1.13",
+    "typescript": "5.7.3"
+  },
+  "description": "Luxury residential development & investment platform \u2014 Next.js 15, GSAP ScrollTrigger, Three.js",
+  "engines": {
+    "node": "22.x"
+  }
+}

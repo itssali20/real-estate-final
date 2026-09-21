@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+@theme {
+  /* Graphite · Cool White · Terracotta */
+  --color-ink: #121416;          /* deepest graphite — dark surfaces          */
+  --color-ink-soft: #1A1E21;     /* raised graphite — cards on dark           */
+  --color-ink-muted: #24282C;    /* steel — borders & fills on dark           */
+  --color-paper: #F7F7F6;        /* cool white — primary light surface        */
+  --color-paper-2: #EFEFEE;      /* cool white, one step down                 */
+  --color-paper-3: #E4E5E4;      /* cool grey — image placeholders            */
+  --color-stone: #8E9296;        /* cool mid grey                             */
+  --color-stone-dark: #5E6367;   /* cool grey, legible on light               */
+  --color-bronze: #C0674A;       /* terracotta — the accent                   */
+  --color-bronze-light: #E0906F; /* terracotta, lifted for dark surfaces      */
+  --color-line: rgba(18, 20, 22, 0.13);
+  --color-line-dark: rgba(247, 247, 246, 0.15);
+
+  --font-display: var(--font-cormorant), "Times New Roman", serif;
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --nav-h: 76px;
+  color-scheme: light;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--color-ink); color: var(--color-paper); }
+
+/* ---------- Typography primitives ---------- */
+.display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 0.96;
+  letter-spacing: -0.015em;
+}
+.display-caps {
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.04;
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--color-stone-dark);
+}
+.eyebrow-light { color: rgba(246, 243, 238, 0.55); }
+.label-caps {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 400;
+}
+.body-lg { font-size: clamp(1rem, 0.94rem + 0.3vw, 1.175rem); line-height: 1.72; font-weight: 300; }
+.body { font-size: 0.975rem; line-height: 1.75; font-weight: 300; }
+.measure { max-width: 62ch; }
+.measure-sm { max-width: 48ch; }
+
+/* ---------- Reveal primitives (GSAP-driven, CSS fallback safe) ---------- */
+[data-anim] { will-change: transform, opacity; }
+.js [data-anim="fade-up"] { opacity: 0; transform: translate3d(0, 26px, 0); }
+.js [data-anim="fade"] { opacity: 0; }
+.js [data-anim="clip"] { clip-path: inset(0 0 100% 0); }
+.js [data-anim="line"] { transform: scaleX(0); transform-origin: left center; }
+.js .split-line-inner { display: block; transform: translate3d(0, 105%, 0); }
+.js [data-img-reveal] > * { transform: scale(1.16); }
+.js [data-img-reveal] { clip-path: inset(0 0 100% 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-anim],
+  .js .split-line-inner,
+  .js [data-img-reveal],
+  .js [data-img-reveal] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ---------- Grain ---------- */
+/* Film grain. No blend mode on purpose — mix-blend-mode on a full-bleed
+   pseudo-element is composited inconsistently and can wash out dark sections. */
+.grain {
+  isolation: isolate;
+  pointer-events: none;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Rules ---------- */
+.rule { height: 1px; background: var(--color-line); width: 100%; }
+.rule-dark { height: 1px; background: var(--color-line-dark); width: 100%; }
+
+/* ---------- Links ---------- */
+.link-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.6s var(--ease-luxe);
+}
+.link-underline:hover::after { transform: scaleX(1); transform-origin: left center; }
+
+/* Hide native cursor only when custom cursor is active on fine pointers */
+@media (pointer: fine) {
+  html.has-cursor, html.has-cursor * { cursor: none !important; }
+}
+
+/* Visible, on-brand focus ring for keyboard users only. */
+:focus-visible {
+  outline: 2px solid var(--color-bronze);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+html.has-cursor a:focus-visible,
+html.has-cursor button:focus-visible,
+html.has-cursor input:focus-visible,
+html.has-cursor select:focus-visible,
+html.has-cursor textarea:focus-visible { cursor: auto !important; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-ink);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+@keyframes marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+.marquee-track { animation: marquee 42s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.14); } }
