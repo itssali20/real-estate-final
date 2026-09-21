@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger, prefersReduced, refreshScroll } from "@/lib/gsap";
 import { BRAND } from "@/lib/site";
 
 export default function Preloader() {
   const root = useRef<HTMLDivElement>(null);
-  const [n, setN] = useState(0);
+  const count = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const el = root.current;
@@ -32,7 +32,7 @@ export default function Preloader() {
 
     tl.to(counter, {
       v: 100, duration: 2.1, ease: "power2.inOut",
-      onUpdate: () => setN(Math.round(counter.v)),
+      onUpdate: () => { if (count.current) count.current.textContent = String(Math.round(counter.v)).padStart(3, "0"); },
     })
       .to(".pl-mark", { opacity: 1, duration: 0.8 }, 0.2)
       .to(".pl-bar", { scaleX: 1, duration: 2.1, ease: "power2.inOut" }, 0)
@@ -51,7 +51,7 @@ export default function Preloader() {
       <div className="pl-inner mb-[8vh] w-full max-w-[min(90vw,900px)] px-6">
         <div className="pl-mark mb-7 flex items-baseline justify-between opacity-0">
           <span className="display-caps text-[clamp(1.1rem,2.4vw,1.75rem)]">{BRAND.mark}</span>
-          <span className="eyebrow eyebrow-light tabular-nums">{String(n).padStart(3, "0")}</span>
+          <span ref={count} className="eyebrow eyebrow-light tabular-nums">000</span>
         </div>
         <div className="relative h-px w-full bg-paper/15">
           <div className="pl-bar absolute inset-0 origin-left scale-x-0 bg-bronze" />

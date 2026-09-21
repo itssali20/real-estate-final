@@ -199,7 +199,7 @@ export const PROJECTS = [
     ],
     chain: ["Develop", "Complete", "Lease", "Hold"],
     image: "/images/hero-03-bel-air.webp",
-    gallery: ["/images/interior-kitchen.webp", "/images/hero-07-completed.webp", "/images/mat-counter.webp", "/images/terrace-dusk.webp"],
+    gallery: ["/images/interior-kitchen.webp", "/images/interior-grand-living.webp", "/images/mat-counter.webp", "/images/terrace-dusk.webp"],
   },
   {
     slug: "810-n-croft-avenue",
@@ -216,7 +216,7 @@ export const PROJECTS = [
       { k: "Residence Range", v: "~1,400–2,200+ SF" },
     ],
     chain: ["Acquire", "Redevelop", "Construct", "Complete"],
-    image: "/images/interior-living.webp",
+    image: "/images/hero-condo-exterior.webp",
     gallery: ["/images/interior-kitchen.webp", "/images/ital-glass.webp", "/images/floor-light.webp", "/images/door-double.webp"],
   },
   {
@@ -235,8 +235,8 @@ export const PROJECTS = [
       { k: "Reported Sale", v: "~$20.5M" },
     ],
     chain: ["Acquire", "Develop", "Build", "Realize Value"],
-    image: "/images/hero-07-completed.webp",
-    gallery: ["/images/interior-living.webp", "/images/pan-eave.webp", "/images/pan-dusk.webp", "/images/wood-stair.webp"],
+    image: "/images/hero-estate-nightpool.webp",
+    gallery: ["/images/interior-living.webp", "/images/hero-estate-pooldeck.webp", "/images/pan-eave.webp", "/images/wood-stair.webp"],
   },
 ];
 

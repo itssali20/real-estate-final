@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/hero/Hero";
 import Reveal from "@/components/Reveal";
@@ -219,8 +220,7 @@ export default function Home() {
               <Link key={p.slug} href={`/developments/${p.slug}`} data-cursor="view" data-anim="fade-up" className="group block">
                 <div data-img-reveal className="relative aspect-[4/3] overflow-hidden bg-paper-3">
                   <div className="absolute inset-0 transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={p.image} alt={p.name} className="h-full w-full object-cover" loading="lazy" />
+                    <Image src={p.image} alt={p.name} fill sizes="(max-width:1024px) 100vw, 33vw" className="object-cover" />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-80" />
                   <div className="absolute bottom-0 left-0 p-6 text-paper">

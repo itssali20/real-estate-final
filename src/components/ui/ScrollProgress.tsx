@@ -12,16 +12,22 @@ export default function ScrollProgress() {
     const el = bar.current;
     if (!el || prefersReduced()) return;
     const set = gsap.quickSetter(el, "scaleX");
-    const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      set(max > 0 ? Math.min(1, window.scrollY / max) : 0);
-    };
+
+    /* Reading scrollHeight forces a layout recalc — expensive to do on every
+       scroll event. It only changes on resize or when content loads, so it is
+       measured there and cached; the scroll handler itself stays layout-free. */
+    let max = 0;
+    const measure = () => { max = document.documentElement.scrollHeight - window.innerHeight; };
+    const onScroll = () => set(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+    const onResize = () => { measure(); onScroll(); };
+
+    measure();
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onResize);
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, [pathname]);
 

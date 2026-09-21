@@ -329,17 +329,33 @@ export default function WebGLStage({
     const onMouse = (e: MouseEvent) => {
       mouseTarget.set((e.clientX / window.innerWidth - 0.5) * 2, -(e.clientY / window.innerHeight - 0.5) * 2);
     };
-    const onVis = () => {
-      if (document.hidden) {
-        cancelAnimationFrame(raf);
-        running = false;
-      } else if (!running && textures.length) {
-        // Never stack a second rAF loop on top of a live one.
-        running = true;
-        clock.getDelta();
-        tick();
-      }
+    /* Rendering a full-screen 5-octave noise shader every frame is the single
+       most expensive thing on the page. Once the hero scrolls out of view it
+       is invisible anyway, so the render loop pauses — the biggest win for
+       scroll smoothness through the rest of the site. */
+    let offscreen = false;
+    const pause = () => {
+      if (!running) return;
+      cancelAnimationFrame(raf);
+      running = false;
     };
+    const resume = () => {
+      if (running || offscreen || document.hidden || !textures.length) return;
+      running = true;
+      clock.getDelta();
+      tick();
+    };
+
+    const onVis = () => { if (document.hidden) pause(); else resume(); };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        offscreen = !entry.isIntersecting;
+        if (offscreen) pause(); else resume();
+      },
+      { threshold: 0 }
+    );
+    io.observe(el);
 
     window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMouse, { passive: true });
@@ -348,6 +364,7 @@ export default function WebGLStage({
     return () => {
       disposed = true;
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouse);
       document.removeEventListener("visibilitychange", onVis);
