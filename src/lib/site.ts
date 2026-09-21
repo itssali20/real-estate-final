@@ -277,6 +277,13 @@ export const LEADERSHIP = [
     bio: "Alex Shvartsman brings more than 25 years of contracting and construction experience, including high-end residential construction in Beverly Hills, Bel-Air and other areas throughout Los Angeles and Southern California. His involvement begins during pre-development so budgeting, construction feasibility and constructability can influence the project before construction begins.",
     tags: ["Pre-Construction", "Budgeting", "Construction Management", "Trade Relationships", "Quality Control", "Project Delivery"],
   },
+  {
+    name: "Robin Nahouray",
+    role: "President, Supreme Construction Management",
+    focus: "Construction Management & General Contracting",
+    bio: "Robin Nahouray is a seasoned construction and real estate development professional with extensive experience in residential and multifamily development throughout Southern California, spanning construction management, general contracting, development, permitting, budgeting, scheduling, subcontractor coordination and project execution. As President of Supreme Construction Management, he brings an owner/developer perspective to every project, with a focus on quality construction, cost control, schedule management, accountability and practical problem-solving from pre-construction through completion. Selected project experience includes Chateau Century, a 14-unit four-story multifamily development at 1825 Pandora Avenue in Los Angeles, and a four-unit condominium development over a subterranean garage at 1007 6th Street in Santa Monica.",
+    tags: ["Construction Management", "General Contracting", "Permitting", "Budgeting & Scheduling", "Subcontractor Coordination", "Project Execution"],
+  },
 ];
 
 export const INVEST_STEPS = [

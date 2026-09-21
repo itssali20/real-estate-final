@@ -32,7 +32,7 @@ export default function LeadershipPage() {
               className={`grid gap-10 border-t border-ink/12 py-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 ${i === 0 ? "border-t-0 pt-0" : ""}`}
             >
               <div>
-                <Figure src={PORTRAIT[i]} alt={`${l.name}, ${l.role}`} ratio="aspect-[3/2]" parallax={6} sizes="(max-width:1024px) 92vw, 34vw" />
+                <Figure src={PORTRAIT[i % PORTRAIT.length]} alt={`${l.name}, ${l.role}`} ratio="aspect-[3/2]" parallax={6} sizes="(max-width:1024px) 92vw, 34vw" />
               </div>
               <div>
                 <div className="flex items-center gap-4">
