@@ -262,6 +262,7 @@ export const LEADERSHIP = [
     focus: "Development & Vision",
     bio: "Roman Alexander brings decades of California real-estate experience together with hands-on residential development experience. His principal development history includes 2391 Roscomare Road, 810 N. Croft Avenue and substantial luxury residential development in Bel-Air.",
     tags: ["Development Strategy", "Site Selection", "Design Direction", "Residential Product", "Project Creation"],
+    photo: "/images/leadership-roman-alexander.webp",
   },
   {
     name: "Peter Cohen",
