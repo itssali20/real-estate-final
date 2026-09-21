@@ -53,13 +53,8 @@ export default function Footer() {
 
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-paper p-1.5 shadow-sm">
-                <Image src="/images/logo.png" alt={BRAND.mark} width={44} height={44} className="h-full w-full object-contain" />
-              </span>
-              <p className="display-caps text-[clamp(1.05rem,2.2vw,1.6rem)]">{BRAND.mark}<span className="text-bronze">, Corp.</span></p>
-            </div>
-            <p className="mt-2 text-sm text-paper/45">{BRAND.address}</p>
+            <Image src="/images/logo-white.png" alt={BRAND.mark} width={424} height={287} className="h-16 w-auto object-contain" />
+            <p className="mt-4 text-sm text-paper/45">{BRAND.address}</p>
             <div className="mt-4 flex flex-wrap gap-x-7 gap-y-1.5 text-sm text-paper/60">
               <a href={`mailto:${BRAND.email.investors}`} className="link-underline">{BRAND.email.investors}</a>
               <a href={`mailto:${BRAND.email.development}`} className="link-underline">{BRAND.email.development}</a>
