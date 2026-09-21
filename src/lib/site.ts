@@ -269,6 +269,7 @@ export const LEADERSHIP = [
     focus: "Real Estate Investment, Legal & Capital Strategy",
     bio: "Peter Cohen brings extensive real-estate investment, development, ownership and asset-management experience through Cardinal Equities and affiliated partnerships. His experience encompasses a historically reported portfolio exceeding 1.5 million square feet. His publicly reported education includes a J.D. from Stanford Law School, with distinctions, and a B.S. from UCLA, summa cum laude. Peter previously practiced real-estate law at Dewey Ballantine LLP in Los Angeles.",
     tags: ["Investment", "Development", "Transactions", "Legal", "Capital Strategy", "Asset Management"],
+    photo: "/images/leadership-peter-cohen.webp",
   },
   {
     name: "Alex Shvartsman",
