@@ -166,7 +166,7 @@ export default function Header() {
       <div ref={menu} className="fixed inset-0 z-[400] hidden bg-ink text-paper">
         <div className="grain absolute inset-0 overflow-hidden" />
         <div className="relative mx-auto flex h-full max-w-[1680px] flex-col justify-between px-5 pb-10 pt-[var(--nav-h)] sm:px-8 lg:px-12">
-          <nav className="mt-8 flex flex-1 flex-col justify-center gap-0 overflow-y-auto no-scrollbar">
+          <nav className="mt-8 flex flex-1 flex-col gap-0 overflow-y-auto no-scrollbar [justify-content:safe_center]">
             {NAV.map((i, idx) => (
               <Link
                 key={i.href}
