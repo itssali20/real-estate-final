@@ -288,6 +288,13 @@ export const LEADERSHIP = [
     tags: ["Construction Management", "General Contracting", "Permitting", "Budgeting & Scheduling", "Subcontractor Coordination", "Project Execution"],
     photo: "/images/leadership-robin-nahouray.webp",
   },
+  {
+    name: "Alex Fur",
+    role: "President, Newform Construction Company",
+    focus: "Construction & Development",
+    bio: "Alex Fur is a veteran Southern California builder and construction executive with decades of experience in luxury custom homes, ground-up construction, major renovations and complex residential development. As President of Newform Construction Company, he has overseen high-end residential projects throughout Los Angeles, including Bel-Air and the Beverly Hills area, with experience spanning large custom estates, hillside construction, basements, guest houses, pools and extensive site improvements. Selected project experience includes a luxury residential project at 1714 Stone Canyon Road in Bel-Air, and a three-story custom residence with basement, garage, recreation and storage areas and an ADU at 9873 Rimmele Drive in Beverly Hills Post Office.",
+    tags: ["Custom Estates", "Ground-Up Construction", "Hillside Construction", "Renovations", "Site Improvements", "Project Execution"],
+  },
 ];
 
 export const INVEST_STEPS = [
