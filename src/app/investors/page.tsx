@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/sections/PageHero";
 import Reveal from "@/components/Reveal";
 import DevTimeline from "@/components/sections/DevTimeline";
@@ -151,6 +152,14 @@ export default function InvestorsPage() {
       </Reveal>
 
       <Reveal id="relations" className="relative overflow-hidden bg-ink py-20 text-paper lg:py-28">
+        <Image
+          src="/images/investor-relations-boardroom.webp"
+          alt="Concord Pacific leadership meeting with investors"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-35"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/60" />
         <div className="grain pointer-events-none absolute inset-0" />
         <Container className="relative">
           <Eyebrow light className="tabular-nums">34 — Investor Relations</Eyebrow>
