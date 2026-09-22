@@ -45,7 +45,7 @@ export default function InvestorsPage() {
                 underwriting, experienced execution, thoughtful project selection and active oversight.
               </p>
             </div>
-            <Figure src="/images/hero-06-construction.webp" alt="Residence under construction at dusk" ratio="aspect-[16/9]" parallax={8} />
+            <Figure src="/images/investor-relations-framing.webp" alt="Framing crew at work on a residential tower under construction" ratio="aspect-[16/9]" parallax={8} animate />
           </div>
         </Container>
       </Reveal>

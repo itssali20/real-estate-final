@@ -30,14 +30,14 @@ export function Rule({ light = false, className = "" }: { light?: boolean; class
 }
 
 export function Figure({
-  src, alt, ratio = "aspect-[4/5]", className = "", parallax, sizes = "(max-width:768px) 100vw, 45vw", priority,
+  src, alt, ratio = "aspect-[4/5]", className = "", parallax, sizes = "(max-width:768px) 100vw, 45vw", priority, animate,
 }: {
-  src: string; alt: string; ratio?: string; className?: string; parallax?: number; sizes?: string; priority?: boolean;
+  src: string; alt: string; ratio?: string; className?: string; parallax?: number; sizes?: string; priority?: boolean; animate?: boolean;
 }) {
   return (
     <div data-img-reveal className={`relative overflow-hidden bg-paper-3 ${ratio} ${className}`}>
       <div className="absolute inset-0" {...(parallax ? { "data-parallax": String(parallax) } : {})}>
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
+        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className={`object-cover ${animate ? "kenburns" : ""}`} />
       </div>
     </div>
   );
