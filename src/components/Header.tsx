@@ -75,7 +75,7 @@ export default function Header() {
         <div className="mx-auto flex h-[var(--nav-h)] max-w-[1680px] items-center justify-between gap-6 px-5 sm:px-8 lg:px-12">
           <Link href="/" data-cursor="hover" className="flex shrink-0 items-center">
             <Image
-              src={dark ? "/images/logo-white.png" : "/images/logo.png"}
+              src="/images/logo.png"
               alt={BRAND.mark}
               width={424}
               height={287}

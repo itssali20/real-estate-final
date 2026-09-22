@@ -143,22 +143,12 @@ body {
 }
 .link-underline:hover::after { transform: scaleX(1); transform-origin: left center; }
 
-/* Hide native cursor only when custom cursor is active on fine pointers */
-@media (pointer: fine) {
-  html.has-cursor, html.has-cursor * { cursor: none !important; }
-}
-
 /* Visible, on-brand focus ring for keyboard users only. */
 :focus-visible {
   outline: 2px solid var(--color-bronze);
   outline-offset: 3px;
   border-radius: 1px;
 }
-html.has-cursor a:focus-visible,
-html.has-cursor button:focus-visible,
-html.has-cursor input:focus-visible,
-html.has-cursor select:focus-visible,
-html.has-cursor textarea:focus-visible { cursor: auto !important; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
