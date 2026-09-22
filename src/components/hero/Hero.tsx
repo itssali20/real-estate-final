@@ -11,7 +11,7 @@ const WebGLStage = dynamic(() => import("./WebGLStage"), { ssr: false });
 
 /** Storyboard 01 — HERO VISUAL, in the order the brief specifies. */
 const SEQUENCE = [
-  { src: "/images/hero-01-coastline.webp", label: "California Coastline" },
+  { src: "/images/ref-hero-pool-sunset.webp", label: "Signature Estate" },
   { src: "/images/hero-02-beverly-hills.webp", label: "Beverly Hills" },
   { src: "/images/hero-03-bel-air.webp", label: "Bel-Air Aerial" },
   { src: "/images/hero-04-sketch.webp", label: "Architectural Sketch" },

@@ -90,7 +90,7 @@ export default function SourcingPage() {
             </div>
 
             <div className="grid gap-4">
-              <Figure src="/images/mat-counter.webp" alt="Marble waterfall countertop detail" ratio="aspect-[4/3]" parallax={8} />
+              <Figure src="/images/ref-materials-stone.webp" alt="Curated stone, wood and metal material samples" ratio="aspect-[4/3]" parallax={8} />
               <Figure src="/images/det-handle.webp" alt="Custom door hardware detail" ratio="aspect-[3/2]" className="ml-auto w-[86%]" parallax={-6} />
             </div>
           </div>

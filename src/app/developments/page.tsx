@@ -22,8 +22,8 @@ export default function DevelopmentsPage() {
         eyebrow="What We Develop"
         title={[<>Distinctive by design.</>, <span key="a" className="italic text-bronze-light">Exceptional by execution.</span>]}
         lead="Our objective is not simply to construct another building. We create properties with an identity."
-        image="/images/interior-kitchen.webp"
-        alt="Luxury kitchen and dining space with a city view at dusk"
+        image="/images/ref-amenity-lobby.webp"
+        alt="Grand marble lobby with attended concierge desk"
       />
 
       <ProductTypes />

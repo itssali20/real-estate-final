@@ -20,8 +20,8 @@ export default function ContactPage() {
         eyebrow="Contact"
         title={[<>Have a property</>, <span key="a" className="italic text-bronze-light">we should see?</span>]}
         lead="We welcome introductions from property owners, brokers, developers, architects, capital partners and real-estate professionals."
-        image="/images/ppl-model.webp"
-        alt="Development model presentation in a sales gallery"
+        image="/images/ref-condo-rooftop-pool.webp"
+        alt="Rooftop terrace and pool overlooking the city at dusk"
       />
 
       <Suspense fallback={<div className="min-h-[60vh] bg-paper" />}>

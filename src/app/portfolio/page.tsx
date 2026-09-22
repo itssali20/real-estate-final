@@ -23,8 +23,8 @@ export default function PortfolioPage() {
         eyebrow="Experience Before The Platform"
         title={[<>Before asking investors to</>, <>participate in the future,</>, <span key="a" className="italic text-bronze-light">we show the past.</span>]}
         lead="Our principals bring experience across ground-up residential development, luxury home development, commercial real estate, property ownership, construction, leasing, asset management, joint ventures, real-estate law and capital strategy."
-        image="/images/ppl-view.webp"
-        alt="Principals reviewing a residence with panoramic city views"
+        image="/images/ref-interior-great-room.webp"
+        alt="Double-height great room with skyline views at dusk"
       />
 
       <Reveal className="relative bg-paper py-20 lg:py-28">

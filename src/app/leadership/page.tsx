@@ -34,8 +34,8 @@ export default function LeadershipPage() {
         index="27"
         eyebrow="Leadership"
         title={[<>Three complementary disciplines.</>, <span key="a" className="italic text-bronze-light">One development platform.</span>]}
-        image="/images/ppl-lounge.webp"
-        alt="Principals reviewing a development from a residence terrace"
+        image="/images/ref-team-office.webp"
+        alt="Leadership team reviewing plans together in the office"
       />
 
       <Reveal className="relative bg-paper py-20 lg:py-28">
