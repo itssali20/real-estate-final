@@ -157,7 +157,7 @@ export default function InvestorsPage() {
           alt="Concord Pacific leadership meeting with investors"
           fill
           sizes="100vw"
-          className="object-cover opacity-35"
+          className="kenburns object-cover opacity-35"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/60" />
         <div className="grain pointer-events-none absolute inset-0" />
