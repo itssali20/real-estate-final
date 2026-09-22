@@ -11,7 +11,21 @@ export const metadata: Metadata = {
     "Three complementary disciplines. One development platform. Development & vision, investment & capital strategy, construction & project execution.",
 };
 
-const PORTRAIT = ["/images/ppl-model.webp", "/images/ppl-lounge.webp", "/images/ppl-view.webp"];
+function Initials({ name }: { name: string }) {
+  const initials = name
+    .split(" ")
+    .filter(Boolean)
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+  return (
+    <div data-img-reveal className="relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-ink">
+      <div className="grain pointer-events-none absolute inset-0" />
+      <span className="display-caps relative text-[clamp(3rem,9vw,5.5rem)] text-bronze-light">{initials}</span>
+    </div>
+  );
+}
 
 export default function LeadershipPage() {
   return (
@@ -32,7 +46,11 @@ export default function LeadershipPage() {
               className={`grid gap-10 border-t border-ink/12 py-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 ${i === 0 ? "border-t-0 pt-0" : ""}`}
             >
               <div>
-                <Figure src={l.photo ?? PORTRAIT[i % PORTRAIT.length]} alt={`${l.name}, ${l.role}`} ratio="aspect-[4/5]" parallax={6} sizes="(max-width:1024px) 92vw, 34vw" />
+                {l.photo ? (
+                  <Figure src={l.photo} alt={`${l.name}, ${l.role}`} ratio="aspect-[4/5]" parallax={6} sizes="(max-width:1024px) 92vw, 34vw" />
+                ) : (
+                  <Initials name={l.name} />
+                )}
               </div>
               <div>
                 <div className="flex items-center gap-4">
