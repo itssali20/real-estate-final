@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/sections/PageHero";
 import Reveal from "@/components/Reveal";
 import ValueChain from "@/components/sections/ValueChain";
@@ -97,6 +98,14 @@ export default function StrategyPage() {
       </Reveal>
 
       <Reveal className="relative overflow-hidden bg-ink py-20 text-paper lg:py-28">
+        <Image
+          src="/images/strategy-construction-golden.webp"
+          alt="Framing crew working a high-rise construction site at golden hour"
+          fill
+          sizes="100vw"
+          className="kenburns object-cover opacity-30"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/70" />
         <div className="grain pointer-events-none absolute inset-0" />
         <Container className="relative">
           <Eyebrow light className="tabular-nums">19 — Quality as an Investment Strategy</Eyebrow>
