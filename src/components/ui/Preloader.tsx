@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap, ScrollTrigger, prefersReduced, refreshScroll } from "@/lib/gsap";
 import { BRAND } from "@/lib/site";
 
@@ -49,8 +50,11 @@ export default function Preloader() {
       className="fixed inset-0 z-[10000] flex items-end justify-center bg-ink text-paper"
     >
       <div className="pl-inner mb-[8vh] w-full max-w-[min(90vw,900px)] px-6">
-        <div className="pl-mark mb-7 flex items-baseline justify-between opacity-0">
-          <span className="display-caps text-[clamp(1.1rem,2.4vw,1.75rem)]">{BRAND.mark}</span>
+        <div className="pl-mark mb-7 flex items-center justify-between opacity-0">
+          <span className="flex items-center gap-3">
+            <Image src="/images/logo-white.png" alt={BRAND.mark} width={424} height={287} className="h-7 w-auto object-contain sm:h-9" priority />
+            <span className="display-caps text-[clamp(1.1rem,2.4vw,1.75rem)]">{BRAND.mark}</span>
+          </span>
           <span ref={count} className="eyebrow eyebrow-light tabular-nums">000</span>
         </div>
         <div className="relative h-px w-full bg-paper/15">
