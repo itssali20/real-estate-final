@@ -47,18 +47,18 @@ export default function Preloader() {
   return (
     <div
       ref={root}
-      className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-ink px-6 text-paper"
+      className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-paper px-6 text-ink"
     >
       <div className="pl-logo mb-[8vh] w-[220px] scale-[0.97] opacity-0 sm:w-[300px]">
         <Image src="/images/logo.png" alt={BRAND.mark} width={424} height={287} className="h-auto w-full object-contain" priority />
       </div>
       <div className="pl-inner w-full max-w-[min(90vw,900px)]">
-        <div className="relative h-px w-full bg-paper/15">
+        <div className="relative h-px w-full bg-ink/15">
           <div className="pl-bar absolute inset-0 origin-left scale-x-0 bg-bronze" />
         </div>
         <div className="mt-5 flex items-baseline justify-between">
-          <span ref={count} className="eyebrow eyebrow-light tabular-nums">000</span>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-paper/40">
+          <span ref={count} className="eyebrow tabular-nums">000</span>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-ink/40">
             Exceptional Locations · World-Class Design · Enduring Value
           </p>
         </div>
