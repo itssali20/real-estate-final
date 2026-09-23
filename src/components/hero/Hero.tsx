@@ -91,16 +91,16 @@ export default function Hero() {
       />
       <WebGLStage images={SRCS} focus={FOCUS} onReady={onReady} onIndex={onIndex} />
 
-      {/* scrims — top for the header everywhere */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/75 to-transparent" />
-      {/* mobile: headline sits over the sky, pillars over the foreground, the view stays open in between */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-ink/55 via-ink/20 to-transparent lg:hidden" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-ink via-ink/70 to-transparent lg:hidden" />
+      {/* scrims — kept light so the sunset's true color shows through; text relies mainly on the drop-shadow below */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/45 to-transparent" />
+      {/* mobile: a light veil over the sky for the headline, a slightly stronger one low down for the buttons/pillars */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[42%] bg-gradient-to-b from-ink/28 to-transparent lg:hidden" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[34%] bg-gradient-to-t from-ink/75 via-ink/30 to-transparent lg:hidden" />
       {/* desktop: bottom and left for the copy */}
-      <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-ink/90 via-ink/10 to-transparent lg:block" />
-      <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-ink/70 via-ink/15 to-transparent lg:block" />
+      <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-ink/65 via-ink/5 to-transparent lg:block" />
+      <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-ink/45 via-ink/5 to-transparent lg:block" />
 
-      <div className="hero-fade relative z-10 mx-auto flex h-full max-w-[1680px] flex-col px-5 pb-5 pt-[calc(var(--nav-h)+0.75rem)] [text-shadow:0_2px_20px_rgba(0,0,0,0.35)] sm:px-8 lg:px-12 lg:pb-6 lg:pt-[var(--nav-h)]">
+      <div className="hero-fade relative z-10 mx-auto flex h-full max-w-[1680px] flex-col px-5 pb-5 pt-[calc(var(--nav-h)+0.75rem)] [text-shadow:0_1px_3px_rgba(0,0,0,0.55),0_6px_28px_rgba(0,0,0,0.4)] sm:px-8 lg:px-12 lg:pb-6 lg:pt-[var(--nav-h)]">
         <div className="flex min-h-0 flex-1 flex-col lg:justify-center lg:py-4">
           <div className="text-center lg:text-left">
             <p className="hero-meta mb-[clamp(0.75rem,1.6vh,1.5rem)] translate-y-3 font-sans text-[0.62rem] font-medium uppercase tracking-[0.2em] text-paper/75 opacity-0 lg:text-[0.75rem] lg:tracking-[0.24em] lg:text-paper/70">
