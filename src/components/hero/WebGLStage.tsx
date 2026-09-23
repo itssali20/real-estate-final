@@ -34,12 +34,16 @@ uniform float uTime;
 uniform vec2  uMouse;
 uniform float uScroll;
 uniform vec3  uAccent;
+uniform float uFxFrom;
+uniform float uFxTo;
 
-vec2 cover(vec2 uv, vec2 res, vec2 plane) {
+// fx: horizontal focal point (0..1), only matters when the plane is narrower than the image.
+vec2 cover(vec2 uv, vec2 res, vec2 plane, float fx) {
   float rP = plane.x / plane.y;
   float rI = res.x / res.y;
   vec2 s = rP > rI ? vec2(1.0, rI / rP) : vec2(rP / rI, 1.0);
-  return (uv - 0.5) * s + 0.5;
+  float cx = clamp(fx, s.x * 0.5, 1.0 - s.x * 0.5);
+  return (uv - 0.5) * s + vec2(cx, 0.5);
 }
 
 vec2 hash(vec2 p) {
@@ -101,8 +105,8 @@ void main() {
   vec2 drift = vec2(uMouse.x * 0.012, uMouse.y * -0.012 + uScroll * 0.06);
 
   vec2 base = (vUv - 0.5) * z + 0.5 + drift + lensPush;
-  vec2 uvF = cover(base + disp, uResFrom, uPlane);
-  vec2 uvT = cover(base - disp, uResTo, uPlane);
+  vec2 uvF = cover(base + disp, uResFrom, uPlane, uFxFrom);
+  vec2 uvT = cover(base - disp, uResTo, uPlane, uFxTo);
 
   // slight chromatic split along the front, so the edge reads as energy
   vec3 a = vec3(
@@ -138,13 +142,18 @@ export default function WebGLStage({
   onReady,
   onIndex,
   holdSeconds = 4.6,
+  focus,
 }: {
   images: string[];
   onReady?: () => void;
   onIndex?: (i: number, progress: number) => void;
   holdSeconds?: number;
+  /** Per-image horizontal focal point (0..1) used when the viewport crops the sides. */
+  focus?: number[];
 }) {
   const host = useRef<HTMLDivElement>(null);
+  const focusRef = useRef(focus);
+  focusRef.current = focus;
 
   /* Callbacks live in refs. If they sat in the effect's dependency array, a new
      inline function from the parent would tear down and rebuild the whole
@@ -199,6 +208,8 @@ export default function WebGLStage({
       uMouse: { value: new THREE.Vector2(0, 0) },
       uScroll: { value: 0 },
       uAccent: { value: new THREE.Color("#C0674A") },
+      uFxFrom: { value: 0.5 },
+      uFxTo: { value: 0.5 },
     };
 
     const mesh = new THREE.Mesh(
@@ -215,7 +226,7 @@ export default function WebGLStage({
     const mouse = new THREE.Vector2(0, 0);
     const mouseTarget = new THREE.Vector2(0, 0);
 
-    const load = (src: string) =>
+    const load = (src: string, n: number) =>
       new Promise<THREE.Texture>((res, rej) =>
         loader.load(
           src,
@@ -223,6 +234,7 @@ export default function WebGLStage({
             t.colorSpace = THREE.SRGBColorSpace;
             t.minFilter = THREE.LinearFilter;
             t.generateMipmaps = false;
+            t.userData.fx = focusRef.current?.[n] ?? 0.5;
             res(t);
           },
           undefined,
@@ -233,6 +245,7 @@ export default function WebGLStage({
     const setRes = (key: "uResFrom" | "uResTo", t: THREE.Texture) => {
       const i = t.image as HTMLImageElement;
       uniforms[key].value.set(i.naturalWidth || 1, i.naturalHeight || 1);
+      uniforms[key === "uResFrom" ? "uFxFrom" : "uFxTo"].value = t.userData.fx ?? 0.5;
     };
 
     /* Everything below is driven by elapsed time, never by frame count, so the
@@ -296,7 +309,7 @@ export default function WebGLStage({
 
     (async () => {
       try {
-        const first = await load(list[0]);
+        const first = await load(list[0], 0);
         if (disposed) return;
         textures.push(first);
         uniforms.uFrom.value = first;
@@ -307,7 +320,7 @@ export default function WebGLStage({
         running = true;
         tick();
         for (let i = 1; i < list.length; i++) {
-          const t = await load(list[i]).catch(() => null);
+          const t = await load(list[i], i).catch(() => null);
           if (disposed) return;
           if (t) {
             textures.push(t);
