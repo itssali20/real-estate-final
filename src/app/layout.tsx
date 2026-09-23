@@ -39,6 +39,15 @@ const jost = localFont({
   fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
 });
 
+/* Signature-style script, used once for the executive signature on the homepage hero. */
+const signature = localFont({
+  src: [{ path: "../fonts/alex-brush-latin-400-normal.woff2", weight: "400", style: "normal" }],
+  variable: "--font-signature",
+  display: "swap",
+  preload: false,
+  fallback: ["cursive"],
+});
+
 const url = "https://concordpacificcorp.com";
 
 export const metadata: Metadata = {
@@ -74,7 +83,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${jost.variable} ${signature.variable}`}>
       <body>
         <script
           type="application/ld+json"
