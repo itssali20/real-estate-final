@@ -1,27 +1,13 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap, prefersReduced, refreshScroll } from "@/lib/gsap";
 import { BRAND } from "@/lib/site";
 
-const WebGLStage = dynamic(() => import("./WebGLStage"), { ssr: false });
-
-/** Storyboard 01 — HERO VISUAL. `focus` is the horizontal focal point kept in frame on narrow screens. */
-const SEQUENCE = [
-  { src: "/images/hero-coastal-resort.webp", label: "Coastal Residences", focus: 0.7 },
-  { src: "/images/hero-02-beverly-hills.webp", label: "Beverly Hills" },
-  { src: "/images/hero-03-bel-air.webp", label: "Bel-Air Aerial" },
-  { src: "/images/hero-04-sketch.webp", label: "Architectural Sketch" },
-  { src: "/images/hero-05-model.webp", label: "Development Model" },
-  { src: "/images/hero-06-construction.webp", label: "Construction" },
-  { src: "/images/hero-07-completed.webp", label: "Completed Residence" },
-];
-
-const SRCS = SEQUENCE.map((s) => s.src);
-const FOCUS = SEQUENCE.map((s) => s.focus ?? 0.5);
+/** HERO VISUAL — one fixed image, no auto-rotating slideshow. */
+const HERO_IMAGE = "/images/hero-coastal-resort.webp";
 
 const PILLARS = [
   { t: "Acquire", d: "Strategic Opportunities", icon: "M4 21V9l6-3v15M10 21V4l10 4v13M3 21h18M13 10h1M16 10h1M13 14h1M16 14h1M13 18h1M16 18h1M6 12h1M6 16h1" },
@@ -32,28 +18,6 @@ const PILLARS = [
 
 export default function Hero() {
   const root = useRef<HTMLDivElement>(null);
-  const [ready, setReady] = useState(false);
-  const [chapter, setChapter] = useState(0);
-
-  /* The shader reports progress every animation frame. Pushing that into React
-     state would re-render this component ~60x a second, so progress is written
-     straight to the DOM instead and only the chapter index — which changes
-     seven times a cycle — lives in state. */
-  const bars = useRef<(HTMLSpanElement | null)[]>([]);
-  const chapterRef = useRef(0);
-
-  const onIndex = useCallback((i: number, p: number) => {
-    if (i !== chapterRef.current) {
-      chapterRef.current = i;
-      setChapter(i);
-    }
-    for (let b = 0; b < bars.current.length; b++) {
-      const el = bars.current[b];
-      if (el) el.style.width = b < i ? "100%" : b === i ? `${Math.round(p * 100)}%` : "0%";
-    }
-  }, []);
-
-  const onReady = useCallback(() => setReady(true), []);
 
   useLayoutEffect(() => {
     if (prefersReduced()) return;
@@ -82,14 +46,13 @@ export default function Hero() {
       className="relative isolate h-[100svh] min-h-[560px] w-full overflow-hidden bg-ink"
     >
       <Image
-        src={SRCS[0]}
+        src={HERO_IMAGE}
         alt="Coastal residential towers and an infinity pool above the marina at sunset"
         fill
         priority
         sizes="100vw"
-        className={`object-cover object-[70%_50%] transition-opacity duration-[1200ms] lg:object-center ${ready ? "opacity-0" : "opacity-100"}`}
+        className="object-cover object-[70%_50%] lg:object-center"
       />
-      <WebGLStage images={SRCS} focus={FOCUS} onReady={onReady} onIndex={onIndex} />
 
       {/* scrims — kept light so the sunset's true color shows through; text relies mainly on the drop-shadow below */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/45 to-transparent" />
@@ -182,35 +145,13 @@ export default function Hero() {
           ))}
         </ul>
 
-        {/* ── desktop: sequence indicator ─────────────────────────────────── */}
+        {/* ── desktop: scroll prompt ───────────────────────────────────────── */}
         <div className="hero-meta hidden shrink-0 translate-y-3 border-t border-paper/15 pt-3 opacity-0 lg:block">
-          <div className="flex items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <span className="relative flex h-7 w-4 items-start justify-center rounded-full border border-paper/30 p-[3px]">
-                <span className="block h-1.5 w-px animate-bounce bg-paper/70" />
-              </span>
-              <span className="eyebrow eyebrow-light">Scroll</span>
-            </div>
-
-            <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
-              <span className="eyebrow text-bronze-light truncate">
-                {SEQUENCE[chapter]?.label}
-              </span>
-              <div className="flex items-center gap-1.5">
-                {SEQUENCE.map((s, i) => (
-                  <span key={s.src} className="relative block h-px w-9 bg-paper/25">
-                    <span
-                      ref={(el) => { bars.current[i] = el; }}
-                      className="absolute inset-y-0 left-0 bg-bronze-light"
-                      style={{ width: "0%" }}
-                    />
-                  </span>
-                ))}
-              </div>
-              <span className="eyebrow eyebrow-light tabular-nums">
-                {String(chapter + 1).padStart(2, "0")}/{String(SEQUENCE.length).padStart(2, "0")}
-              </span>
-            </div>
+          <div className="flex items-center gap-3">
+            <span className="relative flex h-7 w-4 items-start justify-center rounded-full border border-paper/30 p-[3px]">
+              <span className="block h-1.5 w-px animate-bounce bg-paper/70" />
+            </span>
+            <span className="eyebrow eyebrow-light">Scroll</span>
           </div>
         </div>
       </div>
